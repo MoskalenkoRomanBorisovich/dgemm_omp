@@ -16,24 +16,24 @@
 benchmark given matrix multiplication function on random matrices
 */
 void benchmark_func(
-    void (*f)(const uint_fast64_t N, const uint_fast64_t M, const uint_fast64_t K, const double* a, const double* b, double* c),
-    const uint_fast64_t N,
-    const uint_fast64_t n_runs,
+    void (*f)(const uint_fast32_t N, const uint_fast32_t M, const uint_fast32_t K, const double* a, const double* b, double* c),
+    const uint_fast32_t N,
+    const uint_fast32_t n_runs,
     const unsigned int seed,
     double* t_sec,
     double* flops)
 {
     srand(seed);
-    const uint_fast64_t N2 = N * N;
+    const uint_fast32_t N2 = N * N;
     double* a = (double*)malloc(N2 * sizeof(double));
     double* b = (double*)malloc(N2 * sizeof(double));
     double* c = (double*)malloc(N2 * sizeof(double));
     double start, finish;
     *t_sec = 0.0;
-    for (uint_fast64_t i = 0; i < n_runs; ++i) {
-        for (uint_fast64_t i = 0; i < N2; ++i)
+    for (uint_fast32_t i = 0; i < n_runs; ++i) {
+        for (uint_fast32_t i = 0; i < N2; ++i)
             a[i] = (double)rand() / RAND_MAX;
-        for (uint_fast64_t i = 0; i < N2; ++i)
+        for (uint_fast32_t i = 0; i < N2; ++i)
             b[i] = (double)rand() / RAND_MAX;
 
         start = omp_get_wtime();
@@ -50,15 +50,15 @@ void benchmark_func(
 }
 
 
-void cblas_wrapper(const uint_fast64_t N, const uint_fast64_t M, const uint_fast64_t K, const double* a, const double* b, double* c)
+void cblas_wrapper(const uint_fast32_t N, const uint_fast32_t M, const uint_fast32_t K, const double* a, const double* b, double* c)
 {
     cblas_dgemm(CblasColMajor, CblasNoTrans, CblasNoTrans, N, M, K, 1.0, a, N, b, N, 0.0, c, N);
 }
 
 void benchmark_all(
     unsigned int seed,
-    uint_fast64_t n_runs,
-    uint_fast64_t N)
+    uint_fast32_t n_runs,
+    uint_fast32_t N)
 {
     double t_sec;
     double flops;
@@ -73,8 +73,8 @@ void benchmark_all(
 
 int main(int argc, char** argv)
 {
-    uint_fast64_t N = 500;
-    uint_fast64_t n_runs = 10;
+    uint_fast32_t N = 500;
+    uint_fast32_t n_runs = 10;
     unsigned int seed = 123;
 
     switch (argc)

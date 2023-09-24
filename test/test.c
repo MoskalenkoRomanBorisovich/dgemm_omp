@@ -9,9 +9,9 @@
 test single thread algorithm
 */
 void test1_single() {
-    const uint_fast64_t N = 2;
-    const uint_fast64_t K = 3;
-    const uint_fast64_t M = 3;
+    const uint_fast32_t N = 2;
+    const uint_fast32_t K = 3;
+    const uint_fast32_t M = 3;
     double a[] = { 1, 2, 3, 4, 5, 6 };
     double b[] = { 1, 2, 3, 4, 5, 6, 7, 8, 9 };
     double c[N * M];
@@ -27,22 +27,22 @@ void test1_single() {
 compare single thread and parallel algorithm
 */
 void test2_single_to_parallel() {
-    const uint_fast64_t N = 32;
-    const uint_fast64_t K = 64;
-    const uint_fast64_t M = 64;
+    const uint_fast32_t N = 32;
+    const uint_fast32_t K = 64;
+    const uint_fast32_t M = 64;
     double a[N * K];
     double b[K * M];
     double c_s[M * N];
     double c_p[M * N];
-    const uint_fast64_t n_runs = 10;
+    const uint_fast32_t n_runs = 10;
 
 
-    for (uint_fast64_t i = 0; i < n_runs; ++i) {
-        for (uint_fast64_t i = 0; i < N * K; ++i)
+    for (uint_fast32_t i = 0; i < n_runs; ++i) {
+        for (uint_fast32_t i = 0; i < N * K; ++i)
             a[i] = (double)rand() / RAND_MAX;
 
 
-        for (uint_fast64_t i = 0; i < K * M; ++i)
+        for (uint_fast32_t i = 0; i < K * M; ++i)
             b[i] = (double)rand() / RAND_MAX;
 
         blas_dgemm_parallel(N, M, K, a, b, c_p);
