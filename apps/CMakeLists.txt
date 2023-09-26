@@ -19,13 +19,6 @@ target_link_libraries(benchamrk
 # ========================= OpenBlas ===========================
 
 if (NOT DEFINED BLA_VENDOR)
-    find_package(BLAS REQUIRED)
-    if(BLAS_FOUND)
-        message("Found BLAS: ${BLAS_LIBRARIES}")
-        target_link_libraries(benchamrk 
-            ${BLAS_LIBRARIES})
-    endif()
-else()
     set(BLA_VENDOR OpenBLAS)
     find_package(BLAS)
     if(BLAS_FOUND)
@@ -35,6 +28,14 @@ else()
         set(BLA_VENDOR Intel10_64ilp)
         find_package(BLAS REQUIRED)
         target_link_libraries(benchamrk_mkl 
+            ${BLAS_LIBRARIES})
+    endif()
+    
+else()
+    find_package(BLAS REQUIRED)
+    if(BLAS_FOUND)
+        message("Found BLAS: ${BLAS_LIBRARIES}")
+        target_link_libraries(benchamrk 
             ${BLAS_LIBRARIES})
     endif()
 endif()
