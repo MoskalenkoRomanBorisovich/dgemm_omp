@@ -2,7 +2,9 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-
+/*
+    prints column-major matrix
+*/
 void print_matrix(double* a, uint_fast64_t n, uint_fast64_t m)
 {
     for (uint_fast64_t i = 0; i < n; i++) {

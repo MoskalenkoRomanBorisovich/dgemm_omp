@@ -5,39 +5,47 @@ project(
     )
 
 
-add_executable(benchamrk benchamrk_liear_and_omp.c)
 
 
 # ========================= OpenMP =============================
 find_package(OpenMP REQUIRED)
 
-target_link_libraries(benchamrk 
-    OpenMP::OpenMP_C 
-    ${BLAS_LIBRARIES})
 
+# ========================= Custom BLAS vendor =============================
+
+if (DEFINED BLA_VENDOR)
+    add_executable(benchamrk_blas_custom benchamrk_liear_and_omp.c)
+    message("Searching for blas vendor: ${BLA_VENDOR}")
+    find_package(BLAS REQUIRED)
+    message("Found BLAS: ${BLAS_LIBRARIES}")
+    target_link_libraries(benchamrk_blas_custom 
+        ${BLAS_LIBRARIES})
+endif()
 
 # ========================= OpenBlas ===========================
 
-if (NOT DEFINED BLA_VENDOR)
-    set(BLA_VENDOR OpenBLAS)
-    find_package(BLAS)
-    if(BLAS_FOUND)
-        target_link_libraries(benchamrk 
-            ${BLAS_LIBRARIES})
-    elseif()
-        set(BLA_VENDOR Intel10_64ilp)
-        find_package(BLAS REQUIRED)
-        target_link_libraries(benchamrk_mkl 
-            ${BLAS_LIBRARIES})
-    endif()
-    
-else()
-    find_package(BLAS REQUIRED)
-    if(BLAS_FOUND)
-        message("Found BLAS: ${BLAS_LIBRARIES}")
-        target_link_libraries(benchamrk 
-            ${BLAS_LIBRARIES})
-    endif()
+
+set(BLA_VENDOR OpenBLAS)
+find_package(BLAS)
+if(BLAS_FOUND)
+    add_executable(benchamrk_openblas benchamrk_liear_and_omp.c)
+    message("Found BLAS: ${BLAS_LIBRARIES}")
+    target_link_libraries(benchamrk_openblas 
+        ${BLAS_LIBRARIES})
+
+    target_link_libraries(benchamrk_openblas 
+        OpenMP::OpenMP_C)
+endif()
+
+# ========================= MKL ===========================
+
+set(BLA_VENDOR Intel10_64ilp)
+find_package(BLAS)
+if(BLAS_FOUND)
+    add_executable(benchamrk_mkl benchamrk_liear_and_omp.c)
+    message("Found BLAS: ${BLAS_LIBRARIES}")
+    target_link_libraries(benchamrk_mkl 
+        ${BLAS_LIBRARIES})
 endif()
 
 # ========================= slurm run ==========================
