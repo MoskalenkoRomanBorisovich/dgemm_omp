@@ -20,6 +20,9 @@ if (DEFINED BLA_VENDOR)
     message("Found BLAS: ${BLAS_LIBRARIES}")
     target_link_libraries(benchamrk_blas_custom 
         ${BLAS_LIBRARIES})
+    
+    target_link_libraries(benchamrk_blas_custom 
+            OpenMP::OpenMP_C)
 endif()
 
 # ========================= OpenBlas ===========================
@@ -46,7 +49,11 @@ if(BLAS_FOUND)
     message("Found BLAS: ${BLAS_LIBRARIES}")
     target_link_libraries(benchamrk_mkl 
         ${BLAS_LIBRARIES})
+
+    target_link_libraries(benchamrk_mkl 
+        OpenMP::OpenMP_C)
 endif()
 
 # ========================= slurm run ==========================
 configure_file(slurm_run.sh slurm_run.sh COPYONLY)
+configure_file(run_sbatches.sh run_sbatches.sh COPYONLY)

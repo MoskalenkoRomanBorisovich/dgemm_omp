@@ -36,7 +36,7 @@ void test2_single_to_parallel() {
     double c_p[M * N];
     const uint_fast32_t n_runs = 10;
 
-
+    printf("number of threads: %d\n", omp_get_max_threads());
     for (uint_fast32_t i = 0; i < n_runs; ++i) {
         for (uint_fast32_t i = 0; i < N * K; ++i)
             a[i] = (double)rand() / RAND_MAX;
