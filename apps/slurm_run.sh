@@ -9,8 +9,8 @@ SEED=12345
 ls
 for matrix_size in 500 1000 1500; do
     echo "Openblas"
-    OMP_NUM_THREADS=$n_cores ./benchamrk_openblas $matrix_size $N_RUNS $SEED
+    ./benchamrk_openblas $matrix_size $N_RUNS $SEED
     echo "MKL"
-    OMP_NUM_THREADS=$n_cores ./benchamrk_mkl $matrix_size $N_RUNS $SEED
+    ./benchamrk_mkl $matrix_size $N_RUNS $SEED
 
 done
