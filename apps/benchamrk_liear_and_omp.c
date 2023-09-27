@@ -90,6 +90,13 @@ void benchmark_all(
     }
 }
 
+/*
+main function
+params:
+    1. matrix size
+    2. number of runs for each function
+    3. seed for matrix generation
+*/
 int main(int argc, char** argv)
 {
     uint_fast32_t N = 500;

@@ -1,7 +1,7 @@
 #! /bin/bash
 # TODO
 
-#SBATCH --time=00:10:00
+#SBATCH --time=01:00:00
 #SBATCH --constraint="type_d"
 
 N_RUNS=10
