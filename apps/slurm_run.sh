@@ -1,8 +1,7 @@
 #! /bin/bash
-# TODO
 
 #SBATCH --time=01:00:00
-#SBATCH --constraint="type_d"
+#SBATCH --constraint="type_e"
 
 N_RUNS=10
 SEED=12345
