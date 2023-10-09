@@ -19,10 +19,7 @@ if (DEFINED BLA_VENDOR)
     find_package(BLAS REQUIRED)
     message("Found BLAS: ${BLAS_LIBRARIES}")
     target_link_libraries(benchamrk_blas_custom 
-        ${BLAS_LIBRARIES})
-    
-    target_link_libraries(benchamrk_blas_custom 
-            OpenMP::OpenMP_C)
+        ${BLAS_LIBRARIES} OpenMP::OpenMP_C)
 endif()
 
 # ========================= OpenBlas ===========================
@@ -34,10 +31,7 @@ if(BLAS_FOUND)
     add_executable(benchamrk_openblas benchamrk_liear_and_omp.c)
     message("Found BLAS: ${BLAS_LIBRARIES}")
     target_link_libraries(benchamrk_openblas 
-        ${BLAS_LIBRARIES})
-
-    target_link_libraries(benchamrk_openblas 
-        OpenMP::OpenMP_C)
+        ${BLAS_LIBRARIES} OpenMP::OpenMP_C)
 endif()
 
 # ========================= MKL ===========================
@@ -48,10 +42,7 @@ if(BLAS_FOUND)
     add_executable(benchamrk_mkl benchamrk_liear_and_omp.c)
     message("Found BLAS: ${BLAS_LIBRARIES}")
     target_link_libraries(benchamrk_mkl 
-        ${BLAS_LIBRARIES})
-
-    target_link_libraries(benchamrk_mkl 
-        OpenMP::OpenMP_C)
+        ${BLAS_LIBRARIES} OpenMP::OpenMP_C)
 endif()
 
 # ========================= slurm run ==========================

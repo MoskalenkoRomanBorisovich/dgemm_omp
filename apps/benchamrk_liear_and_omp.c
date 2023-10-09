@@ -17,7 +17,7 @@ benchmark given matrix multiplication function on random matrixes
 
 #define TOL 1e-6
 
-typedef void (*blas_dgemm_t)(const uint_fast32_t N, const uint_fast32_t M, const uint_fast32_t K, const double* a, const double* b, double* c);
+typedef void (*blas_dgemm_t)(const uint_fast32_t M, const uint_fast32_t N, const uint_fast32_t K, const double* a, const double* b, double* c);
 
 void benchmark_func(
     blas_dgemm_t* f_arr,
@@ -69,9 +69,9 @@ void benchmark_func(
 }
 
 
-void cblas_wrapper(const uint_fast32_t N, const uint_fast32_t M, const uint_fast32_t K, const double* a, const double* b, double* c)
+void cblas_wrapper(const uint_fast32_t M, const uint_fast32_t N, const uint_fast32_t K, const double* a, const double* b, double* c)
 {
-    cblas_dgemm(CblasColMajor, CblasNoTrans, CblasNoTrans, N, M, K, 1.0, a, N, b, N, 0.0, c, N);
+    cblas_dgemm(CblasColMajor, CblasNoTrans, CblasNoTrans, M, N, K, 1.0, a, M, b, K, 0.0, c, M);
 }
 
 void benchmark_all(

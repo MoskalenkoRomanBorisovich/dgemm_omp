@@ -9,9 +9,9 @@
 test single thread algorithm
 */
 void test1_single() {
-    const uint_fast32_t N = 2;
+    const uint_fast32_t M = 2;
     const uint_fast32_t K = 3;
-    const uint_fast32_t M = 3;
+    const uint_fast32_t N = 3;
     double a[] = { 1, 2, 3, 4, 5, 6 };
     double b[] = { 1, 2, 3, 4, 5, 6, 7, 8, 9 };
     double c[N * M];
@@ -27,9 +27,9 @@ void test1_single() {
 compare single thread and parallel algorithm
 */
 void test2_single_to_parallel() {
-    const uint_fast32_t N = 32;
+    const uint_fast32_t M = 32;
     const uint_fast32_t K = 64;
-    const uint_fast32_t M = 64;
+    const uint_fast32_t N = 96;
     double a[N * K];
     double b[K * M];
     double c_s[M * N];
