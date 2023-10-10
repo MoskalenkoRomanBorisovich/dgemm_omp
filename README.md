@@ -20,4 +20,4 @@ From project directory call following commands:
 Output will be in blas_dgemm_{n_cores}.log files
 
 ## Benchmark results
-Benchmarking results from charisma are available in ./benschmark_results/speed_analisys.ipynb
+Benchmarking results from charisma are available in ./benchmark_results/speed_analysis.ipynb
