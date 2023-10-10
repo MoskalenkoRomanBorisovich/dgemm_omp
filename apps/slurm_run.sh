@@ -5,7 +5,6 @@
 
 N_RUNS=10
 SEED=12345
-ls
 for matrix_size in 500 1000 1500; do
     echo "Openblas"
     ./benchamrk_openblas $matrix_size $N_RUNS $SEED
