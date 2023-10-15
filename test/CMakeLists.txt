@@ -2,6 +2,8 @@ project(
     test
     LANGUAGES C)
 
+set(CMAKE_BUILD_TYPE DEBUG)
+
 add_executable(test1 test.c)
 
 find_package(OpenMP REQUIRED)

@@ -9,7 +9,7 @@ From project directory call following commands:
 
     mkdir build
     cd build
-    cmake ../
+    cmake -DCMAKE_BUILD_TYPE=Release ../
     cmake --build . --config Release --target all
 
 ## run slurm
